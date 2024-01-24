@@ -1,37 +1,24 @@
-# Revealing contested memory - github repository
-This repository contains the code for the Master thesis "Revealing contested memory: Automatic sensitive content detection in colonial photographic archives", aiming at developing Machine Learning models (specifically, Computer Vision models) to assess the feasibility of automatic sensitive content detection in colonial photographic archives.
+# "Revealing contested memory" master thesis - github repository
+This repository contains the code for the project "Revealing contested memory: Automatic sensitive content detection in colonial photographic archives", aiming at experimenting with the fine-tuning of different Machine Learning models (specifically, Computer Vision models) to assess the feasibility of automatic sensitive content detection in colonial photographic archives.
+The project was developed as final thesis for the Master ["Digital Humanities and Digital Knowledge"](https://corsi.unibo.it/2cycle/DigitalHumanitiesKnowledge), at Alma Mater Studiorum - University of Bologna.
 
-## Dataset composition
+## 🧐 Abstract
+*Although many European archival institutions hold plenty of visual materials on colonial warfare and domination, these assets are often difficult to access and use. Colonial records are often rendered inaccessible due to not only privacy, copyright, commercial and technical issues, but also to ethical concerns: when handling such unsettling and sensitive content, a discussion on the ethics of care and looking should be addressed. Moreover, the metadata of these materials is often historically charged and shaped by the colonial gaze of the time, providing insufficient or plain wrong contextualisation to the content, and perpetuating the depicted violence even during present-day fruition of these archival records. In this context, the use of Artificial Intelligence (AI) can assist in the detection of sensitive contents, transforming the way scholars and normal users handle large-scale digital collections and helping them confront possibly disturbing content. This thesis project aims at experiment with the fine-tuning of different Machine Learning (ML) models to assess the feasibility of automatic sensitive content detection in colonial photographic archives.
+Given the complex and sensitive nature of the source data and the possible ethical pitfalls of
+ML, one of the fundamental aspects of this research has been a thorough discussion on the problem definition, taking into account different insights coming from archival sciences, ethics of care and looking, and post-colonialism, and directly inspecting the raw data in parallel with the annotation process. This theoretical framework was then used to interpret the performance of the ML models employed, whose results were processed through a phase of error analysis. The insights gained through this project will be used as a starting point for further research and applications by cultural institutions.*
 
-| Source | Collection | # pictures |
-| --- | --- | --- |
-| Imperial War Museum (IWM) | Batch 1 | 199 |
-| Universiteit Leiden | Nederlands-Indië in foto’s, 1860-1940 (ULNI) | 1981 |
-| **Total** | | 2180 |
+## 🎈 Usage
+The five Jupyter Notebook files showcase the different phases of the project: from the annotated data (which was annotated through Label Studio) to the error analysis of the fine-tuned ML models.
+* `1_data_cleaning.ipynb`
+  - Data cleaning and processing performed on the annotated data (in the form of CSV files, one for each archival collection) to prepare it for the creation of the dataset: specifically, corrupted images were deleted, unnecessary information was removed to improve readability, new columns with information on the collection of provenance of each image were added, and the files were all moved to a common folder `pictures` with all the information stored in a new `index.csv` file
+* `2_dataset_creation.ipynb`
+  -  The prepared data was split into three sets (namely: train, validation, and test sets), updating the information in the `index.csv` file. Given the data imbalance, this operation was performed through a stratified split: the class proportions of the dataset population are thus preserved and the risk of not having any instance of the least populated class in the train set is avoided. Finally, images are split in different folders based on their set and class: the dataset, therefore, has a folder-based structure.
+* `3_training.ipynb`
+  - Experimenting with two different architectures (ViT and ResNet) for the finetuning of the model; after the training, the models are evaluated via precision, recall, f1 (both micro and macro average) and accuracy and confusion matrices are produced 
+* `4_error_analysis.ipynb`
+  - For each class of the validation set, the images's predictions produced by the model (and the predicted score for each class for each instance) are analysed in order to understand the possible errors in detection
 
-## Annotation
-The annotation was carried out on Label Studio and comprises **three different classes**: sensitive, not-sensitive, dubious.
+## ⛏️ Built using
+Python v. 3.12.0 **(CHECK)**
+🤗 Hugging Face libraries `datasets`, `transformers`, `evaluate`
 
-## Sensitive content definition
-Before proceeding with the annotation of the data, it was necessary to outline a possible definition of "sensitive content" in the specific context of this project. Given the aim of the research, this definition mainly considers the mere content of the images, without examining the metadata attached.
-
-A possible taxonomy of different varieties of sensitive content was produced as a result of the (ongoing) discussions on the material available and on previous research conducted on the matter (e.g. [National Research Council. 2004. Measuring Racial Discrimination](https://nap.nationalacademies.org/read/10887/chapter/1)), which was adapted to our specific historical scope:
-
-```
-sensitive content
-|
-├── explicit violence / abuse
-|
-├── scientific racism
-│   └── physical anthropology
-|
-├── otherness
-|   └── exoticism (fetishization)
-|
-└── exclusion / segregation
-    ├── statistical (stereotypical representation)
-    └── structural (hierarchical structure)
-```
-
-## Finetuning
-The finetuning of pre-trained ML models (e.g., ViT, ResNet) is carried out using the 🤗Hugging Face `transformers` library.
