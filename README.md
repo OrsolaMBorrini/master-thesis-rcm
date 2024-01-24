@@ -1,5 +1,6 @@
 # "Revealing contested memory" master thesis - github repository
 This repository contains the code for the project "Revealing contested memory: Automatic sensitive content detection in colonial photographic archives", aiming at experimenting with the fine-tuning of different Machine Learning models (specifically, Computer Vision models) to assess the feasibility of automatic sensitive content detection in colonial photographic archives.
+
 The project was developed as final thesis for the Master ["Digital Humanities and Digital Knowledge"](https://corsi.unibo.it/2cycle/DigitalHumanitiesKnowledge), at Alma Mater Studiorum - University of Bologna.
 
 ## 🧐 Abstract
