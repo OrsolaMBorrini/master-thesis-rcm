@@ -19,7 +19,10 @@ The five Jupyter Notebook files showcase the different phases of the project: fr
 * `4_error_analysis.ipynb`
   - For each class of the validation set, the images's predictions produced by the model (and the predicted score for each class for each instance) are analysed in order to understand the possible errors in detection
 
-## ⛏️ Built using
-- Python v. 3.12.0 **(CHECK)**
-- 🤗 Hugging Face libraries `datasets`, `transformers`, `evaluate`
+## ⛏️ Requirements
+- Python 3.11.5
 
+Run the command:
+```
+pip install -r requirements.txt
+```
