@@ -4,6 +4,7 @@ This repository contains the code for the project "Revealing contested memory: A
 The project was developed as final thesis for the Master ["Digital Humanities and Digital Knowledge"](https://corsi.unibo.it/2cycle/DigitalHumanitiesKnowledge), at Alma Mater Studiorum - University of Bologna.
 
 ## 🧐 Abstract
+Although many European archival institutions hold plenty of visual materials on colonial domination, these assets are frequently difficult to access and use due to not only privacy, copyright, commercial and technical issues, but also to ethical concerns: when handling such unsettling and sensitive content, a discussion on the ethics of care and looking should be addressed, especially in relation to the digitisation of colonial archives with a focus on confronting power dynamics and amplifying underrepresented voices. The large scale of the digital archival collections originated from the digitisation efforts conducted by GLAM institutions since the 1990s marks the imperative of machine reasoning for record selection, appraisal, and management of the records. In this context, the use of Machine Learning (ML) techniques can also assist in the detection of potentially sensitive contents.
 
 ## 🎈 Usage
 The four Jupyter Notebook files showcase the different phases of the project: from the annotated data (which was annotated through Label Studio) to the error analysis of the fine-tuned ML models.
